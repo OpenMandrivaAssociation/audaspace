@@ -4,7 +4,7 @@
 # comment out when not pre-release
 #define prel		rc1
 
-%define rel		18
+%define rel		19
 
 %define major		1
 %define libname		%mklibname %{name} %{major}
