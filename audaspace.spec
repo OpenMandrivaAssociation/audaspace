@@ -89,7 +89,7 @@ Group:		Development/Python
 Provides:	python3-%{name}
 Requires:	pythonegg(3)(numpy)
 
-%description -n	python3-%{name}
+%description -n	python-%{name}
 This package contains Python3 bindings for %{name}.
 
 #------------------------------------------------
@@ -100,7 +100,7 @@ Group:		Development/Python
 Provides:	python3-%{name}-devel
 Requires:	python-%{name} = %{version}-%{release}
 
-%description -n	python3-%{name}-devel
+%description -n	python-%{name}-devel
 This package contains Python3 header files for development with %{name}.
 
 #------------------------------------------------
