@@ -150,7 +150,7 @@ This package contains Python3 header files for development with %{name}.
 
 %files -n python-%{name}
 %doc AUTHORS LICENSE README.md
-#%{python_sitearch}/aud.cpython-3?m-*.so
+%{python_sitearch}/aud.cpython-*
 %{python_sitearch}/%{name}-%{version}%{?prel}-py%{python_version}.egg-info
 
 %files -n python-%{name}-devel
