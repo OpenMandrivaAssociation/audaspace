@@ -23,6 +23,7 @@ Source0:	https://github.com/audaspace/%{name}/archive/v%{version}%{?prel:-%prel}
 # add missing "#include <functional>" picked up by gcc7
 Patch0:		audaspace-gcc7.patch
 Patch1:		audaspace-ffmpeg-4.0.patch
+Patch2:		python3.8.patch
 BuildRequires:	cmake
 BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(fftw3)
