@@ -87,7 +87,7 @@ This package contains header files for development with %{name}.
 Summary:	Python3 bindings package for %{name}
 Group:		Development/Python
 Provides:	python3-%{name}
-Requires:	pythonegg(3)(numpy)
+Requires:	pythondist(3)(numpy)
 
 %description -n	python-%{name}
 This package contains Python3 bindings for %{name}.
