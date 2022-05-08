@@ -2,29 +2,30 @@
 %global __exclude_provides_from %{python2_sitearch}/.*\\.so\\|%{python3_sitearch}/.*\\.so
 
 # comment out when not pre-release
-#define prel		rc1
+%define prel		20220508
 
-%define rel		19
+%define rel		1
 
-%define major		2
-%define libname		%mklibname %{name} %{major}
+%define major		1
+%define libname		%mklibname %{name}
 %define develname	%mklibname %{name} -d
 
 %bcond_with doc
 
 Name:		audaspace
-Version:	1.3.0
-Release:	%mkrel %{?prel:0.%prel.}%{rel}
+Version:	1.4.0
+Release:	%{?prel:0.%prel.}%{rel}
 Summary:	A feature rich high level audio library
 License:	Apache License
 Group:		Sound/Utilities
 URL:		http://audaspace.github.io/
+%if 0%{?prel:1}
+Source0:	https://github.com/audaspace/audaspace/archive/refs/heads/master.tar.gz#/audaspace-%{prel}.tar.gz
+%else
 Source0:	https://github.com/audaspace/%{name}/archive/v%{version}%{?prel:-%prel}/%{name}-%{version}%{?prel:-%prel}.tar.gz
-# add missing "#include <functional>" picked up by gcc7
-Patch0:		audaspace-gcc7.patch
-Patch1:		audaspace-ffmpeg-4.0.patch
+%endif
 Patch2:		python3.8.patch
-BuildRequires:	cmake
+BuildRequires:	cmake ninja
 BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(fftw3)
 BuildRequires:	pkgconfig(jack)
@@ -105,8 +106,11 @@ This package contains Python3 header files for development with %{name}.
 
 #------------------------------------------------
 %prep
-%setup -q -n %{name}-%{version}%{?prel:-%prel}
-%autopatch -p1
+%if 0%{?prel:1}
+%autosetup -p1 -n %{name}-master
+%else
+%autosetup -p1 -n %{name}-%{version}%{?prel:-%prel}
+%endif
 
 %build
 %cmake \
@@ -119,11 +123,12 @@ This package contains Python3 header files for development with %{name}.
 	-DWITH_DOCS:BOOL=FALSE \
 	-DWITH_BINDING_DOCS:BOOL=FALSE \
 	%endif
-	-DDEFAULT_PLUGIN_PATH:PATH=%{_libdir}/%{name}/plugins
-%make_build
+	-DDEFAULT_PLUGIN_PATH:PATH=%{_libdir}/%{name}/plugins \
+	-G Ninja
+%ninja_build
 
 %install
-%make_install -C build
+%ninja_install -C build
 
 %files
 %doc AUTHORS LICENSE README.md
@@ -151,7 +156,7 @@ This package contains Python3 header files for development with %{name}.
 %files -n python-%{name}
 %doc AUTHORS LICENSE README.md
 %{python_sitearch}/aud.cpython-*
-%{python_sitearch}/%{name}-%{version}%{?prel}-py%{python_version}.egg-info
+%{python_sitearch}/%{name}-*py%{python_version}.egg-info
 
 %files -n python-%{name}-devel
 %doc AUTHORS LICENSE README.md
