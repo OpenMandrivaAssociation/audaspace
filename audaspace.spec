@@ -33,6 +33,7 @@ BuildRequires:	pkgconfig(openal)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(sndfile)
+BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	python-setuptools
 BuildRequires:	python-numpy-devel
 
