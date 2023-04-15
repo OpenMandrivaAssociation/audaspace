@@ -2,9 +2,9 @@
 %global __exclude_provides_from %{python2_sitearch}/.*\\.so\\|%{python3_sitearch}/.*\\.so
 
 # comment out when not pre-release
-%define prel		20220508
+#define prel		20220508
 
-%define rel		1
+%define rel		2
 
 %define major		1
 %define libname		%mklibname %{name}
