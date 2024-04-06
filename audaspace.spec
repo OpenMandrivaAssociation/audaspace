@@ -14,7 +14,7 @@
 
 Name:		audaspace
 Version:	1.4.0
-Release:	%{?prel:0.%prel.}%{rel}
+Release:	%{?prel:0.%prel.}%{rel}1
 Summary:	A feature rich high level audio library
 License:	Apache License
 Group:		Sound/Utilities
