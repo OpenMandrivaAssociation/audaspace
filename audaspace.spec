@@ -4,7 +4,7 @@
 # comment out when not pre-release
 #define prel		20220508
 
-%define rel		2
+%define rel		1
 
 %define major		1
 %define libname		%mklibname %{name}
@@ -14,7 +14,7 @@
 
 Name:		audaspace
 Version:	1.5.0
-Release:	%{?prel:0.%prel.}%{rel}1
+Release:	%{?prel:0.%prel.}%{rel}
 Summary:	A feature rich high level audio library
 License:	Apache License
 Group:		Sound/Utilities
