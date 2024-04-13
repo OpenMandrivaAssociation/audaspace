@@ -13,7 +13,7 @@
 %bcond_with doc
 
 Name:		audaspace
-Version:	1.4.0
+Version:	1.5.0
 Release:	%{?prel:0.%prel.}%{rel}1
 Summary:	A feature rich high level audio library
 License:	Apache License
