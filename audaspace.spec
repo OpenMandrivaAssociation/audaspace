@@ -18,7 +18,7 @@ Release:	%{?prel:0.%prel.}%{rel}
 Summary:	A feature rich high level audio library
 License:	Apache License
 Group:		Sound/Utilities
-URL:		http://audaspace.github.io/
+URL:		https://audaspace.github.io/
 %if 0%{?prel:1}
 Source0:	https://github.com/audaspace/audaspace/archive/refs/heads/master.tar.gz#/audaspace-%{prel}.tar.gz
 %else
