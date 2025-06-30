@@ -1,0 +1,12 @@
+diff -rupN audaspace-1.6.0.old/bindings/python/setup.py.in audaspace-1.6.0/bindings/python/setup.py.in
+--- audaspace-1.6.0.old/bindings/python/setup.py.in	2025-03-02 20:58:22.000000000 +0100
++++ audaspace-1.6.0/bindings/python/setup.py.in	2025-06-30 16:36:38.541961585 +0200
+@@ -39,7 +39,7 @@ else:
+ audaspace = Extension(
+                       'aud',
+                       include_dirs = ['@CMAKE_CURRENT_BINARY_DIR@', os.path.join(source_directory, '../../include'), numpy.get_include()] + (['@FFTW_INCLUDE_DIR@'] if '@WITH_FFTW@' == 'ON' else []),
+-                      libraries = ['audaspace'],
++                      libraries = ['audaspace', 'python%s.%s' % (str(sys.version_info.major), str(sys.version_info.minor))],
+                       library_dirs = ['.', 'Release', 'Debug'],
+                       language = 'c++',
+                       extra_compile_args = extra_args,
