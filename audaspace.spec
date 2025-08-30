@@ -15,7 +15,7 @@
 Summary:		A feature rich high level audio library
 Name:		audaspace
 Version:		1.7.0
-Release:		%{?prel:0.%prel.}%{rel}3
+Release:		%{?prel:0.%prel.}%{rel}4
 License:		Apache-2.0
 Group:		Sound/Utilities
 Url:		https://audaspace.github.io/
