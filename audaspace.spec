@@ -4,7 +4,7 @@
 # Comment out when not pre-release
 #define prel		20220508
 
-%define		rel		1
+#define		rel		1
 
 %define		major		1
 %define		libname		%mklibname %{name}
@@ -14,8 +14,8 @@
 
 Summary:		A feature rich high level audio library
 Name:		audaspace
-Version:		1.7.0
-Release:		%{?prel:0.%prel.}%{rel}4
+Version:		1.8.0
+Release:		1
 License:		Apache-2.0
 Group:		Sound/Utilities
 Url:		https://audaspace.github.io/
@@ -25,8 +25,6 @@ Source0:	https://github.com/audaspace/audaspace/archive/refs/heads/master.tar.gz
 Source0:	https://github.com/audaspace/%{name}/archive/v%{version}%{?prel:-%prel}/%{name}-%{version}%{?prel:-%prel}.tar.gz
 %endif
 Patch0:		audaspace-1.6.0-python3.8.patch
-# FFMPEG 8.0
-Patch1:		https://github.com/audaspace/audaspace/commit/fa006ac74c505c7c4e969cc3e5537c979b581cc9.patch
 
 BuildRequires:		cmake >= 3.10
 BuildRequires:		ninja
@@ -37,6 +35,7 @@ BuildRequires:		pkgconfig(libavformat)
 BuildRequires:		pkgconfig(libavutil)
 BuildRequires:		pkgconfig(openal)
 BuildRequires:		pkgconfig(python)
+BuildRequires:		pkgconfig(rubberband)
 BuildRequires:		pkgconfig(sdl2)
 BuildRequires:		pkgconfig(sndfile)
 BuildRequires:		pkgconfig(libpipewire-0.3) >= 1.1.0
