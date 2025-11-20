@@ -37,6 +37,7 @@ BuildRequires:		pkgconfig(libavformat)
 BuildRequires:		pkgconfig(libavutil)
 BuildRequires:		pkgconfig(openal)
 BuildRequires:		pkgconfig(python)
+BuildRequires:		pkgconfig(rubberband)
 BuildRequires:		pkgconfig(sdl2)
 BuildRequires:		pkgconfig(sndfile)
 BuildRequires:		pkgconfig(libpipewire-0.3) >= 1.1.0
