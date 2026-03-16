@@ -15,7 +15,7 @@
 Summary:		A feature rich high level audio library
 Name:		audaspace
 Version:		1.8.0
-Release:		2
+Release:		3
 License:		Apache-2.0
 Group:		Sound/Utilities
 Url:		https://audaspace.github.io/
@@ -25,7 +25,7 @@ Source0:	https://github.com/audaspace/audaspace/archive/refs/heads/master.tar.gz
 Source0:	https://github.com/audaspace/%{name}/archive/v%{version}%{?prel:-%prel}/%{name}-%{version}%{?prel:-%prel}.tar.gz
 %endif
 Patch0:		audaspace-1.6.0-python3.8.patch
-
+Patch1:		audaspace-1.8.0-fix-spline-interpolation.patch
 BuildRequires:		cmake >= 3.10
 BuildRequires:		ninja
 BuildRequires:		pkgconfig(fftw3)
@@ -33,13 +33,13 @@ BuildRequires:		pkgconfig(jack)
 BuildRequires:		pkgconfig(libavcodec)
 BuildRequires:		pkgconfig(libavformat)
 BuildRequires:		pkgconfig(libavutil)
+BuildRequires:		pkgconfig(libpipewire-0.3) >= 1.1.0
+BuildRequires:		pkgconfig(libpulse)
 BuildRequires:		pkgconfig(openal)
 BuildRequires:		pkgconfig(python)
 BuildRequires:		pkgconfig(rubberband)
 BuildRequires:		pkgconfig(sdl2)
 BuildRequires:		pkgconfig(sndfile)
-BuildRequires:		pkgconfig(libpipewire-0.3) >= 1.1.0
-BuildRequires:		pkgconfig(libpulse)
 BuildRequires:		python-setuptools
 BuildRequires:		python-numpy-devel
 
