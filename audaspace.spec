@@ -3,7 +3,6 @@
 
 # Comment out when not pre-release
 #define prel		20220508
-
 #define		rel		1
 
 %define		major		1
@@ -14,18 +13,18 @@
 
 Summary:		A feature rich high level audio library
 Name:		audaspace
-Version:		1.8.0
-Release:		3
+Version:		1.9.0
+Release:		1
 License:		Apache-2.0
 Group:		Sound/Utilities
 Url:		https://audaspace.github.io/
 %if 0%{?prel:1}
 Source0:	https://github.com/audaspace/audaspace/archive/refs/heads/master.tar.gz#/audaspace-%{prel}.tar.gz
 %else
-Source0:	https://github.com/audaspace/%{name}/archive/v%{version}%{?prel:-%prel}/%{name}-%{version}%{?prel:-%prel}.tar.gz
+Source0:	https://github.com/audaspace/audaspace/archive/v%{version}%{?prel:-%prel}/%{name}-%{version}%{?prel:-%prel}.tar.gz
 %endif
-Patch0:		audaspace-1.6.0-python3.8.patch
-Patch1:		audaspace-1.8.0-fix-spline-interpolation.patch
+Patch0:		audaspace-1.9.0-python.patch
+#Patch1:		audaspace-1.8.0-fix-spline-interpolation.patch
 BuildRequires:		cmake >= 3.10
 BuildRequires:		ninja
 BuildRequires:		pkgconfig(fftw3)
