@@ -9,11 +9,11 @@
 %define		libname		%mklibname %{name}
 %define		develname	%mklibname %{name} -d
 
-%bcond_with	doc
+%bcond_without	doc
 
 Summary:		A feature rich high level audio library
 Name:		audaspace
-Version:		1.9.0
+Version:		1.10.0
 Release:		1
 License:		Apache-2.0
 Group:		Sound/Utilities
@@ -24,8 +24,7 @@ Source0:	https://github.com/audaspace/audaspace/archive/refs/heads/master.tar.gz
 Source0:	https://github.com/audaspace/audaspace/archive/v%{version}%{?prel:-%prel}/%{name}-%{version}%{?prel:-%prel}.tar.gz
 %endif
 Patch0:		audaspace-1.9.0-python.patch
-#Patch1:		audaspace-1.8.0-fix-spline-interpolation.patch
-BuildRequires:		cmake >= 3.10
+BuildRequires:		cmake >= 3.21
 BuildRequires:		ninja
 BuildRequires:		pkgconfig(fftw3)
 BuildRequires:		pkgconfig(jack)
@@ -37,10 +36,10 @@ BuildRequires:		pkgconfig(libpulse)
 BuildRequires:		pkgconfig(openal)
 BuildRequires:		pkgconfig(python)
 BuildRequires:		pkgconfig(rubberband)
-BuildRequires:		pkgconfig(sdl2)
+BuildRequires:		pkgconfig(sdl3)
 BuildRequires:		pkgconfig(sndfile)
-BuildRequires:		python-setuptools
 BuildRequires:		python-numpy-devel
+BuildRequires:		python-setuptools
 
 %description
 Audaspace (pronounced "outer space") is a high level audio library written
@@ -49,7 +48,8 @@ It started out as the audio engine of the 3D modelling application Blender
 and is now released as a standalone library.
 
 %files
-%doc AUTHORS LICENSE README.md
+%license LICENSE
+%doc AUTHORS CHANGES README.md
 %{_bindir}/*
 
 #------------------------------------------------
@@ -65,7 +65,7 @@ BuildRequires:		python-audaspace
 BuildRequires:		python-sphinx
 
 %description	doc
-This package contains documentation for %{name}.
+This package contains the documentation for %{name} library.
 
 %files doc
 %{_docdir}/%{name}/
@@ -85,7 +85,8 @@ and is now released as a standalone library.
 This package contains library files for %{name}.
 
 %files -n %{libname}
-%doc AUTHORS LICENSE README.md
+%license LICENSE
+%doc AUTHORS CHANGES README.md
 %{_libdir}/lib%{name}*.so.%{major}{,.*}
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
@@ -103,7 +104,8 @@ Provides:	%{name}-devel = %{version}-%{release}
 This package contains header files for development with %{name}.
 
 %files -n %{develname}
-%doc AUTHORS LICENSE README.md
+%license LICENSE
+%doc AUTHORS CHANGES README.md
 %{_includedir}/%{name}/
 %{_libdir}/lib%{name}*.so
 %{_libdir}/%{name}/plugins/libaud*.so
@@ -112,16 +114,17 @@ This package contains header files for development with %{name}.
 #------------------------------------------------
 
 %package -n	python-%{name}
-Summary:		Python3 bindings package for %{name}
+Summary:		Python bindings package for %{name}
 Group:		Development/Python
 Provides:	python3-%{name}
 Requires:	python3dist(numpy)
 
 %description -n	python-%{name}
-This package contains Python3 bindings for %{name}.
+This package contains Python bindings for %{name}.
 
 %files -n python-%{name}
-%doc AUTHORS LICENSE README.md
+%license LICENSE
+%doc AUTHORS CHANGES README.md
 %{python_sitearch}/aud.cpython-*
 %{python_sitearch}/%{name}-*py%{python_version}.egg-info
 
@@ -137,7 +140,8 @@ Requires:	python-%{name} = %{version}-%{release}
 This package contains Python3 header files for development with %{name}.
 
 %files -n python-%{name}-devel
-%doc AUTHORS LICENSE README.md
+%license LICENSE
+%doc AUTHORS CHANGES README.md
 %{_includedir}/python*/%{name}/
 
 #------------------------------------------------
@@ -153,7 +157,6 @@ This package contains Python3 header files for development with %{name}.
 %build
 %cmake \
 	-DWITH_STRICT_DEPENDENCIES:BOOL=TRUE \
-	-DUSE_SDL2:BOOL=TRUE \
 	%if %{with doc}
 	-DSPHINX_EXECUTABLE=%{_bindir}/sphinx-build \
 	-DDOCUMENTATION_INSTALL_PATH:PATH=%{_docdir}/%{name} \
@@ -163,8 +166,14 @@ This package contains Python3 header files for development with %{name}.
 	%endif
 	-DDEFAULT_PLUGIN_PATH:PATH=%{_libdir}/%{name}/plugins \
 	-G Ninja
+
 %ninja_build
 
 
 %install
 %ninja_install -C build
+
+# Drop unwanted stuff
+%if %{with doc}
+rm -f %{buildroot}%{_docdir}/%{name}/bindings/.buildinfo
+%endif
