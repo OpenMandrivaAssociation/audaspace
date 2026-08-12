@@ -14,12 +14,13 @@
 Summary:		A feature rich high level audio library
 Name:		audaspace
 Version:		1.10.0
-Release:		3
+Release:		4
 License:		Apache-2.0
 Group:		Sound/Utilities
 Url:		https://audaspace.github.io/
 %if 0%{?prel:1}
 Source0:	https://github.com/audaspace/audaspace/archive/refs/heads/master.tar.gz#/audaspace-%{prel}.tar.gz
+Source100:	%{name}.rpmlintrc
 %else
 Source0:	https://github.com/audaspace/audaspace/archive/v%{version}%{?prel:-%prel}/%{name}-%{version}%{?prel:-%prel}.tar.gz
 %endif
