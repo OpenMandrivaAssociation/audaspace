@@ -14,7 +14,7 @@
 Summary:		A feature rich high level audio library
 Name:		audaspace
 Version:		1.10.0
-Release:	7
+Release:	8
 License:		Apache-2.0
 Group:		Sound/Utilities
 Url:		https://audaspace.github.io/
@@ -24,6 +24,7 @@ Source0:	https://github.com/audaspace/audaspace/archive/refs/heads/master.tar.gz
 Source0:	https://github.com/audaspace/audaspace/archive/v%{version}%{?prel:-%prel}/%{name}-%{version}%{?prel:-%prel}.tar.gz
 %endif
 Patch0:		audaspace-1.9.0-python.patch
+Patch1:		audaspace-1.10.0-ffmpeg9.patch
 BuildRequires:		cmake >= 3.21
 BuildRequires:		ninja
 BuildRequires:		pkgconfig(fftw3)
