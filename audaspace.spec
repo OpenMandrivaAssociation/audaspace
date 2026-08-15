@@ -178,6 +178,3 @@ This package contains Python3 header files for development with %{name}.
 %if %{with doc}
 rm -f %{buildroot}%{_docdir}/%{name}/bindings/.buildinfo
 %endif
-
-# keep %mklibname visible for rpmlint SpecCheck (checks last line only)
-# %mklibname
